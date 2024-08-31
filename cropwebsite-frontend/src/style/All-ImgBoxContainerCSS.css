@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.imgbox-container a{
+    display: block;
+    width: 6em;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 5px;
+    background: var(--grey-300);
+    color: var(--primary-500);
+    text-align: center;
+}
+
+.imgbox-container.A{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--grey-100);
+    justify-content: center;
+    align-items: center;
+}
+
+.imgbox-container.A .clip-path{
+    display: block;
+    height: 100%;
+    width: 100%;
+    clip-path: inset(10% 10% 10% 10%);
+}
+
+.imgbox-container.A .content{
+    height: 50%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.imgbox-container.A .content div{
+    margin: 0 auto;
+    width: 24.479vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgbox-container.A .content div h1{
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.imgbox-container.A .content div p{
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 20px 0 20px 0;
+    color: var(--grey-500);
+}
+
+/*TODO: Clip-path for the image container*/
+@media screen and (min-width: 800px){
+    .imgbox-container.B{
+        display:flex;
+        height: 100vh;
+        background: var(--grey-100);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgbox-container.B .clip-path{
+        display: block;
+        height: 100%;
+        width: 100%;
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    }
+
+    .imgbox-container.B .content{
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .imgbox-container.B .content div{
+        margin: 0 auto;
+        width: 24.479vw;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgbox-container.B .content div h1{
+        font-size: 3rem;
+        font-weight: 500;
+    }
+
+    .imgbox-container.B .content div p{
+        font-size: 1.5rem;
+        font-weight: 400;
+        padding: 20px 0 20px 0;
+        color: var(--grey-500);
+    }
+}
+
+.imgbox-container.C{
+    display: flex;
+    height: 70vh;
+    background: var(--grey-100);
+    justify-content: center;
+    align-items: center;
+}
+
+.imgbox-container.C .clip-path{
+    display: block;
+    height: 100%;
+    width: 100%;
+    clip-path: inset(10% 10% 10% 10%);
+}
+
+.imgbox-container.C .content{
+    height: 50%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.imgbox-container.C .content div{
+    margin: 0 auto;
+    width: 24.479vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgbox-container.C .content div h1{
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.imgbox-container.C .content div p{
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 20px 0 20px 0;
+    color: var(--grey-500);
+}
+
+
+
