@@ -9,7 +9,7 @@ Because the use of BrowseRoute in React Router, the url cannot work in github pa
 # clone the repo
 git clone https://github.com/EdwinZhanCN/CropWebsite.git
 # go to the base directory
-cd CropWebsite/cropweb-frontend/
+cd CropWebsite/cropwebsite-frontend/
 # run vite
 npm run dev
 ```
