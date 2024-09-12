@@ -1,6 +1,7 @@
 package controller;
 
 import entity.News;
+import entity.Products;
 import entity.RestBean;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,20 @@ public class StaticDataController {
             return RestBean.failure(404, "News not found");
         }
         return RestBean.success("News found", news);
+    }
+
+    @GetMapping("/products")
+    public RestBean<Products> getProducts(@RequestParam String text){
+        Products product = service.getProducts(text);
+        if(product == null){
+            return RestBean.failure(404, "product not found");
+        }
+        return RestBean.success("product found", product);
+    }
+
+    @PostMapping("/products")
+    public RestBean<String> insertProduct(@RequestBody Products product){
+        service.insertProduct(product);
+        return RestBean.success("Product inserted", null);
     }
 }

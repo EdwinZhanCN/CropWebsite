@@ -17,7 +17,7 @@ public class ImgBox {
     @Column(name = "image", columnDefinition = "BLOB")
     private byte[] image;
 
-    @Column(name = "text", length = 512)
+    @Column(name = "description", length = 512)
     private String text;
 
     // mappedBy = "imgBox" means that the ImgBox entity is the inverse side of the relationship
