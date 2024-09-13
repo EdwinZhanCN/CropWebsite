@@ -1,11 +1,11 @@
-package controller;
+package com.edwinzhan.cropwebsitebackend.controller;
 
-import entity.News;
-import entity.Products;
-import entity.RestBean;
+import com.edwinzhan.cropwebsitebackend.entity.News;
+import com.edwinzhan.cropwebsitebackend.entity.Products;
+import com.edwinzhan.cropwebsitebackend.entity.RestBean;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import service.StaticDataService;
+import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
 
 
 /**
@@ -42,8 +42,9 @@ public class StaticDataController {
         return RestBean.success("product found", product);
     }
 
-    @PostMapping("/products")
+    @RequestMapping(value = "/products", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public RestBean<String> insertProduct(@RequestBody Products product){
+        System.out.println(product);
         service.insertProduct(product);
         return RestBean.success("Product inserted", null);
     }

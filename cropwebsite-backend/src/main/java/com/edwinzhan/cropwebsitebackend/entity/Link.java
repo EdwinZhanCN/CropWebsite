@@ -1,4 +1,4 @@
-package entity;
+package com.edwinzhan.cropwebsitebackend.entity;
 
 
 import jakarta.persistence.*;

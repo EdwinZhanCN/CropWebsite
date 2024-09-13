@@ -1,13 +1,12 @@
-package service.imple;
+package com.edwinzhan.cropwebsitebackend.service.imple;
 
-import entity.News;
-import entity.Products;
+import com.edwinzhan.cropwebsitebackend.entity.News;
+import com.edwinzhan.cropwebsitebackend.entity.Products;
 import jakarta.annotation.Resource;
-import mapper.NewsMapper;
-import mapper.ProductsMapper;
+import com.edwinzhan.cropwebsitebackend.mapper.NewsMapper;
+import com.edwinzhan.cropwebsitebackend.mapper.ProductsMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import service.StaticDataService;
+import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
 
 @Service
 public class StaticDataServiceImpl implements StaticDataService {

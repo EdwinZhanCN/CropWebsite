@@ -1,6 +1,6 @@
-package mapper;
+package com.edwinzhan.cropwebsitebackend.mapper;
 
-import entity.Products;
+import com.edwinzhan.cropwebsitebackend.entity.Products;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -13,6 +13,6 @@ public interface ProductsMapper {
 
     //Insert the new product into the database
     @Insert("insert into products (upload_date, file_name, product_name, price, quantity, description, url)" +
-            "values (#{createdAt}, #{fileName}, #{productName}, #{price}, #{quantity}, #{description}, #{url})")
+            "values (#{upload_date}, #{file_name}, #{product_name}, #{price}, #{quantity}, #{description}, #{url})")
     void insertProduct(Products product);
 }

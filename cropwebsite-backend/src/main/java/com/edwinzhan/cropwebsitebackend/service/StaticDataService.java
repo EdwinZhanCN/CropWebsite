@@ -1,7 +1,7 @@
-package service;
+package com.edwinzhan.cropwebsitebackend.service;
 
-import entity.News;
-import entity.Products;
+import com.edwinzhan.cropwebsitebackend.entity.News;
+import com.edwinzhan.cropwebsitebackend.entity.Products;
 
 public interface StaticDataService {
     News getNewsByIdOrTitle(String text);

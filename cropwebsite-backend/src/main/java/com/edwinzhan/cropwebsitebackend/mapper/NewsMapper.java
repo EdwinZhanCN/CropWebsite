@@ -1,6 +1,6 @@
-package mapper;
+package com.edwinzhan.cropwebsitebackend.mapper;
 
-import entity.News;
+import com.edwinzhan.cropwebsitebackend.entity.News;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
