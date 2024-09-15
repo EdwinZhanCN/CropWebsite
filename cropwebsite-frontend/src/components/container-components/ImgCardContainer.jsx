@@ -10,11 +10,11 @@ import image4 from '@/assets/4.jpeg';
 
 /**
  * This component is an image box container that contains images and text
- * @param bid - the id of the image box
+ * @param cid - the id of the image box
  * @returns {Element} - a div containing all the image boxes
  * @constructor
  */
-function ImgCarContainer() {
+function ImgCarContainer({ cid }) {
     //TODO: param cid
 
     // const [data, setData] = useState([]);
@@ -67,7 +67,6 @@ function ImgCarContainer() {
                 ))}
             </div>
         </div>
-
     );
 }
 

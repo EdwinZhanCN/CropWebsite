@@ -7,6 +7,9 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
 
+import java.util.Collections;
+import java.util.List;
+
 
 /**
  * StaticDataController
@@ -34,12 +37,20 @@ public class StaticDataController {
     }
 
     @GetMapping("/products")
-    public RestBean<Products> getProducts(@RequestParam String text){
-        Products product = service.getProducts(text);
-        if(product == null){
-            return RestBean.failure(404, "product not found");
+    public RestBean<List<Products>> getProducts(@RequestParam(required = false) String text){
+        if (text != null && !text.isEmpty()) {
+            Products product = service.getProducts(text);
+            if (product == null) {
+                return RestBean.failure(404, "Product not found");
+            }
+            return RestBean.success("Product found", Collections.singletonList(product));
+        } else {
+            List<Products> allProducts = service.getAllProducts();
+            if (allProducts.isEmpty()) {
+                return RestBean.failure(404, "No products available");
+            }
+            return RestBean.success("All products retrieved", allProducts);
         }
-        return RestBean.success("product found", product);
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

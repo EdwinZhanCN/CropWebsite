@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 
 @Mapper
 public interface ProductsMapper {
@@ -15,4 +17,7 @@ public interface ProductsMapper {
     @Insert("insert into products (upload_date, file_name, product_name, price, quantity, description, url)" +
             "values (#{upload_date}, #{file_name}, #{product_name}, #{price}, #{quantity}, #{description}, #{url})")
     void insertProduct(Products product);
+
+    @Select("select * from products")
+    List<Products> findAllProducts();
 }

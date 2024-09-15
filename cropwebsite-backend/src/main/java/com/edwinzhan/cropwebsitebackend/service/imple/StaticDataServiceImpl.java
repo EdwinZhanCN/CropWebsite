@@ -8,6 +8,8 @@ import com.edwinzhan.cropwebsitebackend.mapper.ProductsMapper;
 import org.springframework.stereotype.Service;
 import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
 
+import java.util.List;
+
 @Service
 public class StaticDataServiceImpl implements StaticDataService {
 
@@ -35,6 +37,15 @@ public class StaticDataServiceImpl implements StaticDataService {
     @Override
     public Products getProducts(String text) {
         return productsMapper.findProductsByIdOrProductName(String.valueOf(text));
+    }
+
+    /**
+     * Get all products
+     * @return all products
+     */
+    @Override
+    public List<Products> getAllProducts() {
+        return productsMapper.findAllProducts();
     }
 
     /**

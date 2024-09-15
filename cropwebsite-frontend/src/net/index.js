@@ -38,7 +38,7 @@ async function get(url, resolve=defaultError, reject=defaultFailure) {
         const response = await axios.get(url, { withCredentials: true });
         const { data } = response;
         if (data.success) {
-            resolve(data.obj);
+            resolve(data.data);
         } else {
             reject(new Error(data.message));
         }

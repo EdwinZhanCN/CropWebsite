@@ -4,6 +4,8 @@ import "@/style/Root.css";
 import router from "@/router";
 import Header from "@/components/general-components/Header";
 import Footer from "@/components/general-components/Footer";
+import ProductDetail from "@/components/ProductDetail";
+import ProductDetailContainer from "@/components/container-components/ProductDetailContainer";
 
 /**
  * This is the main component that contains the header, footer, and the routes
@@ -12,15 +14,16 @@ import Footer from "@/components/general-components/Footer";
  */
 function App() {
   return (
-      <Router>
-          <Header />
-          <Routes>
-              {router.map((route, index) => (
-                  <Route key={index} path= {route.path} element= {route.element} />
-              ))}
-          </Routes>
-          <Footer />
-      </Router>
+      // <Router>
+      //     <Header />
+      //     <Routes>
+      //         {router.map((route, index) => (
+      //             <Route key={index} path= {route.path} element= {route.element} />
+      //         ))}
+      //     </Routes>
+      //     <Footer />
+      // </Router>
+      <ProductDetailContainer />
   );
 }
 
