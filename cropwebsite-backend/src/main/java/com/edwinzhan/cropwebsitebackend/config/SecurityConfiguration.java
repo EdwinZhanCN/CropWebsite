@@ -30,7 +30,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000, http://localhost:5174, http://localhost/")); // 允许来自此来源的请求
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5000")); // 允许来自此来源的请求
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // 允许的 HTTP 方法
         configuration.setAllowedHeaders(List.of("*")); // 允许的请求头
         configuration.setAllowCredentials(true); // 是否允许发送 Cookie

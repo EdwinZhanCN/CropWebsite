@@ -12,6 +12,6 @@ public class Products {
     private String product_name;
     private double price;
     private int quantity;
-    private String description;
+    private String description="";
     private String url;
 }

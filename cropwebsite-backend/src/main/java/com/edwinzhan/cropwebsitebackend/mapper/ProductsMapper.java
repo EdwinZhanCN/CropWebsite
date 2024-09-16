@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface ProductsMapper {
     @Select("select * from products where id = #{text} or product_name LIKE CONCAT('%', #{text}, '%')")
-    Products findProductsByIdOrProductName(String text);
+    List<Products> findProductsByIdOrProductName(String text);
 
     //Insert the new product into the database
     @Insert("insert into products (upload_date, file_name, product_name, price, quantity, description, url)" +

@@ -6,6 +6,8 @@ import com.edwinzhan.cropwebsitebackend.entity.RestBean;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/static")
 public class StaticDataController {
+
+    Dotenv dotenv = Dotenv.configure().load();
 
     // this is the service that will be used to get the news
     @Resource
@@ -39,16 +43,26 @@ public class StaticDataController {
     @GetMapping("/products")
     public RestBean<List<Products>> getProducts(@RequestParam(required = false) String text){
         if (text != null && !text.isEmpty()) {
-            Products product = service.getProducts(text);
-            if (product == null) {
-                return RestBean.failure(404, "Product not found");
+            List<Products> products = service.getProducts(text);
+            if (products.isEmpty()) {
+                return RestBean.failure(404, "No products available");
             }
-            return RestBean.success("Product found", Collections.singletonList(product));
+//            products.forEach(product -> {
+//                String sasToken = sasTokenService.getSasToken("your-container", product.getFileName());
+//                product.setUrl(product.getUrl() + "?" + sasToken);
+//            });
+            products.forEach(product -> {
+                product.setUrl(product.getUrl() + "?"+ dotenv.get("SAS_KEY"));
+            });
+            return RestBean.success("Selected products retrieved", products);
         } else {
             List<Products> allProducts = service.getAllProducts();
             if (allProducts.isEmpty()) {
                 return RestBean.failure(404, "No products available");
             }
+            allProducts.forEach(product -> {
+                product.setUrl(product.getUrl() + "?"+ dotenv.get("SAS_KEY"));
+            });
             return RestBean.success("All products retrieved", allProducts);
         }
     }
@@ -56,6 +70,10 @@ public class StaticDataController {
     @RequestMapping(value = "/products", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public RestBean<String> insertProduct(@RequestBody Products product){
         System.out.println(product);
+        // insert the product into the database, no null check
+        if (product == null) {
+            return RestBean.failure(400, "Upload date is required");
+        }
         service.insertProduct(product);
         return RestBean.success("Product inserted", null);
     }

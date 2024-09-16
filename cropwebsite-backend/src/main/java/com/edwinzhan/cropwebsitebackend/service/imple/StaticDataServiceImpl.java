@@ -35,7 +35,7 @@ public class StaticDataServiceImpl implements StaticDataService {
      * @return products
      */
     @Override
-    public Products getProducts(String text) {
+    public List<Products> getProducts(String text) {
         return productsMapper.findProductsByIdOrProductName(String.valueOf(text));
     }
 

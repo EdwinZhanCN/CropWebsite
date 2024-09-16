@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StaticDataService {
     News getNewsByIdOrTitle(String text);
-    Products getProducts(String text);
+    List<Products> getProducts(String text);
     List<Products> getAllProducts();
     void insertProduct(Products product);
 }
