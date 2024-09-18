@@ -11,6 +11,6 @@ module.exports = defineConfig({
     },
     server: {
         host: 'localhost',
-        port: 5000
+        port: 3456,
     }
 })

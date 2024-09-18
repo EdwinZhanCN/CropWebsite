@@ -14,16 +14,15 @@ import ProductDetailContainer from "@/components/container-components/ProductDet
  */
 function App() {
   return (
-      // <Router>
-      //     <Header />
-      //     <Routes>
-      //         {router.map((route, index) => (
-      //             <Route key={index} path= {route.path} element= {route.element} />
-      //         ))}
-      //     </Routes>
-      //     <Footer />
-      // </Router>
-      <ProductDetailContainer />
+      <Router>
+          <Header />
+          <Routes>
+              {router.map((route, index) => (
+                  <Route key={index} path= {route.path} element= {route.element} />
+              ))}
+          </Routes>
+          <Footer />
+      </Router>
   );
 }
 

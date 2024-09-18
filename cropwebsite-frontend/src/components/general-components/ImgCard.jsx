@@ -1,9 +1,17 @@
 import React from 'react';
 import '@/style/ImgCardCSS.css';
+import ProductDetail from "@/components/ProductDetail";
+import ProductDetailContainer from "@/components/container-components/ProductDetailContainer";
 
 const ImgCard = ({ product }) => {
+    const goToDetail = () => {
+        return(
+            <ProductDetailContainer />
+        )
+    }
+
     return (
-        <div className="card" >
+        <div className="card">
             <div className="imgBx">
                 <img src={product.img} alt={product.alt}/>
             </div>

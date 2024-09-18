@@ -33,7 +33,7 @@ function ProductDetailContainer() {
 
     return (
         <div>
-            <div >
+            <div className={"product-detail-container"}>
                 {products.map((product) => (
                     <ProductDetail key={product.file_name} product={product}/> // Corrected the props and variables
                 ))}

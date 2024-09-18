@@ -5,6 +5,7 @@ import image1 from '@/assets/1.jpg';
 import image2 from '@/assets/2.jpg';
 import image3 from '@/assets/3.jpg';
 import image4 from '@/assets/4.jpeg';
+import ProductDetailContainer from "@/components/container-components/ProductDetailContainer";
 
 
 
@@ -58,15 +59,25 @@ function ImgCarContainer({ cid }) {
     //     });
     // }, [cid]);
 
+    // render the container to the product detail page
+    const [productDetail, setProductDetail] = useState(false);
+    const handleViewMore = () => {
+        setProductDetail(true);
+    }
+
 
     return (
-        <div className="container-body">
-            <div className="container">
-                {sampleData.map((product) => (
-                    <ImgCard key={product.id} product={product}/>
-                ))}
+        (
+            productDetail ? <ProductDetailContainer /> :
+            <div className="container-body">
+                <div className="container">
+                    {sampleData.map((product) => (
+                        <ImgCard key={product.id} product={product}/>
+                    ))}
+                </div>
+                <div onClick={handleViewMore}>View More</div>
             </div>
-        </div>
+        )
     );
 }
 
