@@ -3,6 +3,7 @@ const reactRefresh = require('@vitejs/plugin-react-refresh')
 import { fileURLToPath, URL } from 'node:url'
 
 module.exports = defineConfig({
+    base: '/',
     plugins: [reactRefresh()],
     resolve: {
         alias: {
