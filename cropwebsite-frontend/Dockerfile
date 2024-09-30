@@ -1,5 +1,8 @@
 # Start with a base image containing Node.js
-FROM node:14-alpine
+FROM node:22-alpine
+
+# Name of the image
+LABEL Name=cropwebsite-frontend
 
 # Set the working directory in the container
 WORKDIR /app
@@ -17,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port your app runs on
-EXPOSE 3000
+EXPOSE 3456
 
 # Start the application
 CMD ["npm", "start"]
