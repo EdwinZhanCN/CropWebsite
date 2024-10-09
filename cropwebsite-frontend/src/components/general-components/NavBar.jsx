@@ -9,6 +9,9 @@ const NavBar = () => {
     //state for links
     const [showLinks, setShowLinks] = useState(false);
 
+    //contact information
+    const [contacts, setContacts] = useState([]);
+
     //reference for links container
     const linksRef = useRef(null);
 
@@ -31,6 +34,25 @@ const NavBar = () => {
             document.body.classList.remove('no-scroll');
         }
     }, [showLinks]);
+
+    // get the social contact information from backend
+    useEffect(() => {
+        async function fetchSocial() {
+            try {
+                const response = await fetch('http://localhost:8080/api/static/contacts');
+                if (response.ok) {
+                    const res = await response.json();
+                    console.log('Social fetched:', res.data);
+                    setContacts(res.data);
+                } else {
+                    console.error('Failed to fetch social:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching social:', error);
+            }
+        }
+        fetchSocial().then(() => console.log('Social fetched'));
+    },[]);
 
     return (
         <>
@@ -56,7 +78,7 @@ const NavBar = () => {
                                                         {submenu.map((sublink) => {
                                                             const {id, url, text} = sublink;
                                                             return (
-                                                                <a href={url}>{text}</a>
+                                                                <a key={url} href={url}>{text}</a>
                                                             );
                                                         })}
                                                     </div>
@@ -73,12 +95,19 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <ul className="social-icons">
-                        {social.map((socialIcon) => {
-                            const {id, url, icon} = socialIcon;
+                        {contacts.map((contact) => {
+                            const socialIcon = social.find((item) => item.name === contact.name) || social.find((item) => item.name === 'default');
                             return (
-                                <li key={id}>
-                                    <a href={url} >{icon}</a>
-                                </li>);
+                                <li key={contact.id}>
+                                    <div className={"tooltip"}>
+                                        {socialIcon.icon}
+                                        <span className={"tooltiptext"}>
+                                            {contact.value}
+                                            {contact.img_url && <img src={contact.img_url} alt={contact.name}/>}
+                                        </span>
+                                    </div>
+                                </li>
+                            );
                         })}
                     </ul>
                 </div>

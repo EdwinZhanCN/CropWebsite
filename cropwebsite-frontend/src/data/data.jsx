@@ -1,5 +1,6 @@
 import React from 'react';
-import {FaFacebook, FaInstagram, FaLinkedin, FaWeixin, FaWhatsapp} from 'react-icons/fa';
+import {FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaPlusCircle, FaWeixin, FaWhatsapp} from 'react-icons/fa';
+import {FaPhone} from "react-icons/fa6";
 
 
 export const links = [
@@ -88,28 +89,35 @@ export const links = [
 
 export const social = [
     {
-        id:1,
-        url: 'https://www.facebook.com',
+        name: 'facebook',
         icon: <FaFacebook/>,
     },
     {
-        id:2,
-        url: 'https://www.whatsapp.com',
+        name: 'whatsapp',
         icon: <FaWhatsapp/>
     },
     {
-        id:4,
-        url: 'linkedin.com',
+        name: 'linkedin',
         icon: <FaLinkedin/>,
     },
     {
-        id:3,
-        url: 'https://www.weixin.com',
+        name: 'weixin',
         icon: <FaWeixin/>,
     },
     {
-        id:5,
-        url: 'https://www.instagram.com',
+        name: 'instagram',
         icon: <FaInstagram/>
+    },
+    {
+        name:'telephone',
+        icon:<FaPhone/>
+    },
+    {
+        name:'email',
+        icon:<FaEnvelope/>
+    },
+    {
+        name:'default',
+        icon:<FaPlusCircle/>
     }
 ]

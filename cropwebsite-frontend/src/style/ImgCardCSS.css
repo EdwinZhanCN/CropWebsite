@@ -4,10 +4,11 @@
 }
 
 .container-body{
+    font-family: "Helvetica Neue", sans-serif;
     display: flex;
     justify-content: center;
     align-items: start;
-    height: 110vh;
+    height: calc(100vh + 300px);
 }
 
 .container{

@@ -1,0 +1,42 @@
+.markdown-news-wrapper {
+    font-family: Helvetica, sans-serif;
+    margin: 20px;
+    min-height: 100vh;
+}
+
+.markdown-news-nav {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: var(--primary-100);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.markdown-news-nav:hover {
+    background-color: var(--grey-300);
+}
+
+.markdown-news-nav-content {
+ padding: 25px;
+}
+
+.markdown-news-nav-content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.markdown-news-nav-content h3 {
+    color: var(--primary-500);
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.markdown-news-nav-content p{
+    color: var(--grey-700);
+}

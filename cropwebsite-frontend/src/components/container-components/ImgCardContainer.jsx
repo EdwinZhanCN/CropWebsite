@@ -74,8 +74,21 @@ function ImgCarContainer({ cid }) {
                     {sampleData.map((product) => (
                         <ImgCard key={product.id} product={product}/>
                     ))}
+                    <span
+                        onClick={handleViewMore}
+                        style={{
+                            cursor: 'pointer',
+                            textAlign: 'center',
+                            backgroundColor: 'var(--grey-300)',
+                            padding: '1rem',
+                            marginLeft: '5rem',
+                            borderRadius: '8px',
+                        }}
+                    >
+                        View More
+                    </span>
                 </div>
-                <div onClick={handleViewMore}>View More</div>
+
             </div>
         )
     );
