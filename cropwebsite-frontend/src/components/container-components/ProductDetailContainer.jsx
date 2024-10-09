@@ -35,7 +35,7 @@ function ProductDetailContainer() {
         <div>
             <div className={"product-detail-container"}>
                 {products.map((product) => (
-                    <ProductDetail key={product.file_name} product={product}/> // Corrected the props and variables
+                    <ProductDetail key={product.upload_date} product={product}/> // Corrected the props and variables
                 ))}
             </div>
         </div>

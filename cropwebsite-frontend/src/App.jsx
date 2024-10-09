@@ -6,6 +6,7 @@ import Header from "@/components/general-components/Header";
 import Footer from "@/components/general-components/Footer";
 import ProductDetail from "@/components/ProductDetail";
 import ProductDetailContainer from "@/components/container-components/ProductDetailContainer";
+import MarkdownNewsContainer from "@/components/container-components/MarkdownNewsContainer";
 
 /**
  * This is the main component that contains the header, footer, and the routes

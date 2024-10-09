@@ -78,7 +78,7 @@ const NavBar = () => {
                                                         {submenu.map((sublink) => {
                                                             const {id, url, text} = sublink;
                                                             return (
-                                                                <a href={url}>{text}</a>
+                                                                <a key={url} href={url}>{text}</a>
                                                             );
                                                         })}
                                                     </div>
@@ -98,7 +98,7 @@ const NavBar = () => {
                         {contacts.map((contact) => {
                             const socialIcon = social.find((item) => item.name === contact.name) || social.find((item) => item.name === 'default');
                             return (
-                                <li key={contact.name}>
+                                <li key={contact.id}>
                                     <div className={"tooltip"}>
                                         {socialIcon.icon}
                                         <span className={"tooltiptext"}>
