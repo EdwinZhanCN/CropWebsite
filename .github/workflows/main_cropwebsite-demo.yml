@@ -35,6 +35,7 @@ jobs:
           AZURE_REDIS_PASSWORD: ${{ secrets.AZURE_REDIS_PASSWORD }}
           RAILWAY_REDIS_HOST: ${{ secrets.RAILWAY_REDIS_HOST }}
           RAILWAY_REDIS_PASSWORD: ${{ secrets.RAILWAY_REDIS_PASSWORD }}
+          RAILWAY_REDIS_URL: ${{ secrets.RAILWAY_REDIS_URL }}
         run: echo "Environment variables set."
 
       - name: Build with Maven
