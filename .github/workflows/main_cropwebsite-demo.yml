@@ -22,6 +22,19 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
+      - name: Set environment variables
+        env:
+          AZURE_MYSQL_URL: ${{ secrets.AZURE_MYSQL_URL }}
+          AZURE_MYSQL_USERNAME: ${{ secrets.AZURE_MYSQL_USERNAME }}
+          AZURE_MYSQL_PASSWORD: ${{ secrets.AZURE_MYSQL_PASSWORD }}
+          AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
+          AZURE_STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_REDIS_HOST: ${{ secrets.AZURE_REDIS_HOST }}
+          AZURE_REDIS_PASSWORD: ${{ secrets.AZURE_REDIS_PASSWORD }}
+        run: echo "Environment variables set."
+
       - name: Build with Maven
         run: mvn -f cropwebsite-backend/pom.xml clean install
 
@@ -60,7 +73,7 @@ jobs:
           app-name: 'cropwebsite-demo'
           slot-name: 'Production'
           package: '*.jar'
-      - name: Set environment profile
-        run: echo "SPRING_PROFILES_ACTIVE=production" >> $GITHUB_ENV
+
+
 
           
