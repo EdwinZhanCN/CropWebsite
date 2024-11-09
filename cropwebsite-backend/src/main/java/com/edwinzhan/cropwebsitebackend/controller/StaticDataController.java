@@ -9,8 +9,6 @@ import com.edwinzhan.cropwebsitebackend.service.JPARepoService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import com.edwinzhan.cropwebsitebackend.service.StaticDataService;
-import io.github.cdimascio.dotenv.Dotenv;
-
 
 import java.util.List;
 
@@ -21,9 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/static")
 public class StaticDataController {
-
-    Dotenv dotenv = Dotenv.configure().load();
-
     // this is the service that will be used to get the static data
     @Resource
     private StaticDataService staticDataService;

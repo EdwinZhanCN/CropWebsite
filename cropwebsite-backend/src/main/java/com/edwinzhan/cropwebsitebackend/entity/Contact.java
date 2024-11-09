@@ -13,10 +13,10 @@ public class Contact {
     private Long id;
 
     @Id
-    @Column(name = "name", columnDefinition = "NOT NULL")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="value", columnDefinition = "NOT NULL")
+    @Column(name="value", nullable = false)
     private String value;
 
     @Column(name="img_url")
