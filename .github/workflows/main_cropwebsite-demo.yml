@@ -60,4 +60,7 @@ jobs:
           app-name: 'cropwebsite-demo'
           slot-name: 'Production'
           package: '*.jar'
+      - name: Set environment profile
+        run: echo "SPRING_PROFILES_ACTIVE=production" >> $GITHUB_ENV
+
           
