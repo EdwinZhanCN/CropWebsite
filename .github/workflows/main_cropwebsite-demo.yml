@@ -73,6 +73,8 @@ jobs:
           app-name: 'cropwebsite-demo'
           slot-name: 'Production'
           package: '*.jar'
+        env:
+          SPRING_PROFILES_ACTIVE: 'pro'
 
 
 
