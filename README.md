@@ -2,8 +2,8 @@
 A sample company website and the website update system.
 
 ## Demo Site
-No data right now
-Deploy on Azure Static Web App
+**Successfully Deploy the Web App! With Data!**
+🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
 
 ## Dev Usage
 ```shell
