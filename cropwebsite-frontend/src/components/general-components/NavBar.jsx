@@ -4,6 +4,7 @@ import {FaBars, FaTimes} from 'react-icons/fa';
 import '@/style/NavBarCSS.css';
 import {links, social} from "@/data/data";
 import logo from '@/assets/logo192.png';
+import {get} from "@/net";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 

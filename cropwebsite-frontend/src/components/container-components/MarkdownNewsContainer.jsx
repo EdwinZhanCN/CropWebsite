@@ -4,6 +4,7 @@ import MarkdownNews from "@/components/presentational-components/MarkdownNews";
 import "@/style/MarkdownNewsContainerCSS.css";
 import TextOnImage from "@/components/general-components/TextOnImage";
 import image1 from '@/assets/microsoft.jpeg';
+import { get } from '@/net';
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
