@@ -5,6 +5,8 @@ import '@/style/NavBarCSS.css';
 import {links, social} from "@/data/data";
 import logo from '@/assets/logo192.png';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 const NavBar = () => {
     //state for links
     const [showLinks, setShowLinks] = useState(false);
@@ -39,7 +41,7 @@ const NavBar = () => {
     useEffect(() => {
         async function fetchSocial() {
             try {
-                const response = await fetch('http://localhost:8080/api/static/contacts');
+                const response = await fetch(`${baseUrl}/api/static/contacts`);
                 if (response.ok) {
                     const res = await response.json();
                     console.log('Social fetched:', res.data);
@@ -78,7 +80,7 @@ const NavBar = () => {
                                                         {submenu.map((sublink) => {
                                                             const {id, url, text} = sublink;
                                                             return (
-                                                                <a key={url} href={url}>{text}</a>
+                                                                <a key={`${url}-${id}`} href={url}>{text}</a>
                                                             );
                                                         })}
                                                     </div>
