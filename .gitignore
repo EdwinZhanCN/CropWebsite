@@ -3,3 +3,5 @@ node_modules
 CropWebsite.iml
 .idea/
 cropwebsite-frontend/.devcontainer/
+*.env
+*.env.local
