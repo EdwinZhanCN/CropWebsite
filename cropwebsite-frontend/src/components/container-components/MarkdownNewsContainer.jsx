@@ -5,6 +5,8 @@ import "@/style/MarkdownNewsContainerCSS.css";
 import TextOnImage from "@/components/general-components/TextOnImage";
 import image1 from '@/assets/microsoft.jpeg';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 function MarkdownNewsContainer() {
     const [news, setNews] = useState([]);
     const [selectedNews, setSelectedNews] = useState(null);
@@ -12,7 +14,7 @@ function MarkdownNewsContainer() {
     useEffect(() => {
         async function fetchNews() {
             try {
-                const response = await fetch('http://localhost:8080/api/static/news');
+                const response = await fetch(`${baseUrl}/api/static/news`);
                 if (response.ok) {
                     const res = await response.json();
                     console.log('News fetched:', res.data);
