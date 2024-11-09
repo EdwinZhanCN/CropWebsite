@@ -38,21 +38,47 @@ public class StaticDataController {
 
     /**
      * Get news by id or title
-     * @param text id or title of the news
-     * @return RestBean<News>
+     * @return RestBean<List<News>>
      */
     @GetMapping("/news")
-    public RestBean<News> getNews(@RequestParam String text){
-        // get the news by id or title
-        News news = staticDataService.getNewsByIdOrTitle(text);
+    public RestBean<List<News>> getAllNews(){
+        // get the presigned url for the news
+        String container = "news-doc";
 
-        // if no news found, return 404
-        if(news == null){
+        // get all news from JPA
+        List<News> news = jpaRepoService.getAllNews();
+        if (news == null) {
             return RestBean.failure(404, "News not found");
         }
 
-        // return the news
+        // get file name from the file url
+        // sample: https://cropwebsitefile.blob.core.windows.net/news/2022-06-30_浙江大学中标信息_1.md
+        // file name: 2022-06-30_浙江大学中标信息_1.md
+
+        news.forEach(news1 -> {
+            String fileName = news1.getFileUrl().substring(news1.getFileUrl().lastIndexOf("/") + 1);
+            news1.setFileUrl(sasTokenService.getPresignedUrl(container, fileName,10800));
+        });
         return RestBean.success("News found", news);
+    }
+
+    /**
+     * Update news
+     * @param news the news to be updated
+     * @return RestBean<String>
+     */
+    @RequestMapping(value = "/news", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    public RestBean<String> updateNews(@RequestBody List<News> news){
+        for (News n : news) {
+            if (n.getTitle() == null || n.getFileUrl() == null || n.getDate() == null || n.getShortText() == null) {
+                return RestBean.failure(400, "Title, fileUrl, date and shortText are required");
+            }
+        }
+        // update the news
+        jpaRepoService.updateNews(news);
+
+        // return success message
+        return RestBean.success("News updated", null);
     }
 
 

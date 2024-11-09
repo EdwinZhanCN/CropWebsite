@@ -5,7 +5,7 @@ import React, { useState } from "react";
 function DrawerContent({info}) {
     return (
         <>
-            <input type="radio" name="slide" id={`drawer${info.id}`} checked/>
+            <input type="radio" name="slide" id={`drawer${info.id}`} defaultChecked={true}/>
             <label htmlFor={`drawer${info.id}`} className="card" style={{
                 backgroundImage: `url(${info.imgSrc})`
             }}>
