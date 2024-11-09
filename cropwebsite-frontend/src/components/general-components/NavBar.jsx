@@ -41,20 +41,21 @@ const NavBar = () => {
     useEffect(() => {
         async function fetchSocial() {
             try {
-                const response = await fetch(`${baseUrl}/api/static/contacts`);
-                if (response.ok) {
-                    const res = await response.json();
-                    console.log('Social fetched:', res.data);
-                    setContacts(res.data);
-                } else {
-                    console.error('Failed to fetch social:', response.statusText);
-                }
+                // 使用自定义的 get 方法请求社交数据
+                await get(`${baseUrl}/api/static/contacts`, (res) => {
+                    console.log('Social fetched:', res);
+                    setContacts(res); // 直接设置获取的数据
+                }, (error) => {
+                    console.error('Failed to fetch social:', error);
+                });
             } catch (error) {
                 console.error('Error fetching social:', error);
             }
         }
+
         fetchSocial().then(() => console.log('Social fetched'));
-    },[]);
+    }, []);
+
 
     return (
         <>

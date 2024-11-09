@@ -14,15 +14,14 @@ function MarkdownNewsContainer() {
     useEffect(() => {
         async function fetchNews() {
             try {
-                const response = await fetch(`${baseUrl}/api/static/news`);
-                if (response.ok) {
-                    const res = await response.json();
-                    console.log('News fetched:', res.data);
+                // 使用自定义的 get 方法请求新闻数据
+                await get(`${baseUrl}/api/static/news`, async (res) => {
+                    console.log('News fetched:', res);
 
-                    // 使用 Promise.all 读取每个 fileUrl 内容
+                    // 使用 Promise.all 读取每个 fileUrl 的内容
                     const formattedNews = await Promise.all(
-                        res.data.map(async (item) => {
-                            const fileContent = await fetch(item.fileUrl).then((res) => res.text());
+                        res.map(async (item) => {
+                            const fileContent = await get(item.fileUrl, (text) => text);
                             return {
                                 id: item.id,
                                 title: item.title,
@@ -32,16 +31,19 @@ function MarkdownNewsContainer() {
                             };
                         })
                     );
+
                     setNews(formattedNews);
-                } else {
-                    console.error('Failed to fetch News:', response.statusText);
-                }
+                }, (error) => {
+                    console.error('Failed to fetch News:', error);
+                });
             } catch (error) {
                 console.error('Error fetching News:', error);
             }
         }
+
         fetchNews().then(() => console.log('NewsDocs fetched'));
     }, []);
+
 
     // const sampleData = [
     //     {

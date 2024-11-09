@@ -3,6 +3,7 @@ import axios from "axios";
 const defaultError = ()=> console.log('Please contact to the administrator')
 const defaultFailure = (message)=> console.log(message)
 
+const AZURE_API_KEY = import.meta.env.VITE_AZURE_API_KEY;
 // This function sends a post request to the backend server
 /*
  * @param {string} url - the URL of the backend server
@@ -35,7 +36,12 @@ async function post(url, data, resolve=defaultError, reject=defaultFailure) {
  */
 async function get(url, resolve=defaultError, reject=defaultFailure) {
     try {
-        const response = await axios.get(url, { withCredentials: true });
+        const response = await axios.get(url, {
+            withCredentials: true,
+            headers: {
+                'Ocp-Apim-Subscription-Key': AZURE_API_KEY
+            }
+        });
         const { data } = response;
         if (data.success) {
             resolve(data.data);
