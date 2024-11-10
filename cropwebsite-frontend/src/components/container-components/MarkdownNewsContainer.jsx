@@ -22,7 +22,10 @@ function MarkdownNewsContainer() {
                     // 使用 Promise.all 读取每个 fileUrl 的内容
                     const formattedNews = await Promise.all(
                         res.map(async (item) => {
-                            const fileContent = await get(item.fileUrl, (text) => text);
+                            const fileContent = await get(item.fileUrl, (text) => text, (error) => {
+                                console.error('Failed to fetch file content:', error);
+                                return '';
+                            }, false);
                             return {
                                 id: item.id,
                                 title: item.title,

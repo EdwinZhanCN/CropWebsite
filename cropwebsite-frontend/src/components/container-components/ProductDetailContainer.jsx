@@ -18,8 +18,7 @@ function ProductDetailContainer() {
                     (error) => {
                         console.error("Failed to fetch products:", error);
                         setProducts([]);  // 在错误发生时设置产品为一个空数组
-                    }
-                );
+                    });
             } catch (error) {
                 console.error("Error handling in useEffect:", error);
             }

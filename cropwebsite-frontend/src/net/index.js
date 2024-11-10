@@ -32,16 +32,23 @@ async function post(url, data, resolve=defaultError, reject=defaultFailure) {
 
 /*
  * @param {string} url - the URL of the backend server
+ * @param {Function} resolve - callback for successful responses
+ * @param {Function} reject - callback for failed responses
+ * @param {boolean} useApiKey - whether to include the API key in the request
  * @returns {Promise} - a promise that resolves with the server response data or rejects with an error
  */
-async function get(url, resolve=defaultError, reject=defaultFailure) {
+async function get(url, resolve = defaultError, reject = defaultFailure, useApiKey = true) {
     try {
+        const headers = {
+            // Conditionally add the API Key if `useApiKey` is true
+            ...(useApiKey && { 'Ocp-Apim-Subscription-Key': AZURE_API_KEY }),
+        };
+
         const response = await axios.get(url, {
             withCredentials: true,
-            headers: {
-                'Ocp-Apim-Subscription-Key': AZURE_API_KEY
-            }
+            headers: headers
         });
+
         const { data } = response;
         if (data.success) {
             resolve(data.data);
