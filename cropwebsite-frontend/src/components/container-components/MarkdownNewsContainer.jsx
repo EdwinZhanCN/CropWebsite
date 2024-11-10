@@ -16,37 +16,50 @@ function MarkdownNewsContainer() {
         async function fetchNews() {
             try {
                 // 使用自定义的 get 方法请求新闻数据
-                await get(`${baseUrl}/api/static/news`, async (res) => {
-                    console.log('News fetched:', res);
+                await get(
+                    `${baseUrl}/api/static/news`,
+                    async (res) => {
+                        console.log('News fetched:', res);
 
-                    // 使用 Promise.all 读取每个 fileUrl 的内容
-                    const formattedNews = await Promise.all(
-                        res.map(async (item) => {
-                            const fileContent = await get(item.fileUrl, (text) => text, (error) => {
-                                console.error('Failed to fetch file content:', error);
-                                return '';
-                            }, false);
-                            return {
-                                id: item.id,
-                                title: item.title,
-                                date: new Date(item.date).toISOString().split('T')[0],
-                                short: item.shortText,
-                                content: fileContent, // 将文件内容作为文本
-                            };
-                        })
-                    );
+                        // 使用 Promise.all 读取每个 fileUrl 的内容
+                        const formattedNews = await Promise.all(
+                            res.map(async (item) => {
+                                let fileContent = '';
+                                try {
+                                    const response = await fetch(item.fileUrl);
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP error! 状态: ${response.status}`);
+                                    }
+                                    fileContent = await response.text();
+                                } catch (error) {
+                                    console.error('Failed to fetch file content:', error);
+                                    // 如果获取失败，fileContent 保持为空字符串
+                                }
 
-                    setNews(formattedNews);
-                }, (error) => {
-                    console.error('Failed to fetch News:', error);
-                });
+                                return {
+                                    id: item.id,
+                                    title: item.title,
+                                    date: new Date(item.date).toISOString().split('T')[0],
+                                    short: item.shortText,
+                                    content: fileContent, // 将文件内容作为文本
+                                };
+                            })
+                        );
+
+                        setNews(formattedNews);
+                    },
+                    (error) => {
+                        console.error('Failed to fetch News:', error);
+                    }
+                );
             } catch (error) {
                 console.error('Error fetching News:', error);
             }
         }
 
         fetchNews().then(() => console.log('NewsDocs fetched'));
-    }, []);
+    }, [baseUrl]);
+
 
 
     // const sampleData = [

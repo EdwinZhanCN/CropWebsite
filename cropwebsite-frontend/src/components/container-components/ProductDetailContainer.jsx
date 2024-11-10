@@ -27,7 +27,11 @@ function ProductDetailContainer() {
     }, []);  // 空依赖数组表示这个 effect 仅在组件挂载时运行一次
 
     if (products === null) {
-        return <div>Loading...</div>; // Display loading state before products are fetched
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+            </div>
+        );
     }
 
     return (
